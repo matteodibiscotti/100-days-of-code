@@ -34,7 +34,7 @@ def main():
             if punc_count == passwd_punc:
                 selector.remove(2)
     
-    print("Here is your password:\n" + password)
+    print("\nHere is your password:\n\n" + password + "\n")
 
 if __name__ == "__main__":
     main()
