@@ -3,6 +3,7 @@
 #  - check bids are of type float or int
 #  - check names do not include numbers
 #  - get the numbers to always have 2 decimal places
+#  - get the console to clear when the next person enters their name and bid so they cant see what the previous person bid
 
 def main():
     print("Welcome to the silent auction")
