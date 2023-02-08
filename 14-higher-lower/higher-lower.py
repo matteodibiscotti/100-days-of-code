@@ -16,7 +16,6 @@ def display_question(challenger1, challenger2):
 
     return user_answer
 
-
 def check_answer(challenger1, challenger2, user_answer, score):
     follower_counts = [challenger1['follower_count'], challenger2['follower_count']]
     correct_answer = follower_counts.index(max(follower_counts))
@@ -43,7 +42,6 @@ def main():
         score, correct = check_answer(challenger1, challenger2, user_answer, score)
         if correct == False:
             playing = False
-        
 
 if __name__ == "__main__":
     main()
