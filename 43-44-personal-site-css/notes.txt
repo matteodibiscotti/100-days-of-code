@@ -1,0 +1,9 @@
+If you want to have an inline element who's width you can control then you can use the inline block display property
+
+when using the position property:
+    - relative positioning is postioning the div relative to where it originally should be
+    - absolute positioning is positioning the div relative to it's parent element
+
+When specifying fonts, they can be rendered differently on different systems so you can actually declare backup fonts in
+case the primary font is not available on the users system. you can have more than one backup
+
