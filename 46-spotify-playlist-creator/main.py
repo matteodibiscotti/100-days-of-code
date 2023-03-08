@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 from requests_html import HTMLSession
-import requests
 import spotipy
 import os
 
@@ -10,7 +9,8 @@ redirect_uri = os.getenv('SPOTIPY_REDIRECT_URI')
 
 def main():
     # date = input('Which year do you want to travel to?  Enter the date in the format YYYY-MM-DD:')
-    year = date[:4]
+    # year = date[:4]
+    year = 1990
     # url = f'https://www.billboard.com/charts/hot-100/{date}/'
     url = f'https://www.billboard.com/charts/hot-100/1990-01-06/'
 
@@ -37,14 +37,28 @@ def main():
     # ================SONG-URI======================
     song_uri_list = []
 
-    # for i, j in zip(song_list, artist_list):
-    #     track, artist = i, j
-    #     query = f'track:{track} year:{year}'
-    #     response = (client.search(q=q, type='track', market='JP'))
-    #     # need to loop through the results to find the song where the song name and artist match their respective fields
-    #     song_uri_list.append(result) 
-
-
+    for i, j in zip(song_list, artist_list):
+        track, artist = i, j
+        # query = f'track:{track} year:{year}'
+        query = f'track:{track} artist:{artist}'
+        response = (client.search(q=query, type='track', market='JP'))
+        # need to loop through the results to find the song where the song name and artist match their respective fields
+        for item in range(len(response['tracks']['items'])):
+            spotify_artist_list = []
+            uri = ""
+            for item_artist in range(len(response['tracks']['items'][item]['artists'])):
+                spotify_artist_list.append(response['tracks']['items'][item]['artists'][item_artist]['name'].lower())
+                if artist.lower() in spotify_artist_list:
+                    uri = response['tracks']['items'][item]['uri']
+                    song_uri_list.append(uri)
+                    print(f'track:{track} artist:{artist} ========= {uri}')
+    
+    print(len(song_uri_list))
+    # print(song_uri_list[:5])
+    templist = []
+    [templist.append(x) for x in song_uri_list if x not in templist]
+    print('List after removing dups')
+    print(len(templist))
 
     
 
